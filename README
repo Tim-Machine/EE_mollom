@@ -1,0 +1,17 @@
+Mollom for Expression Engine
+
+Upload to /system/expressionengine/thridparty/ 
+
+Enable in the extensions menu and add your keys
+
+You can create an account at http://www.mollom.com 
+
+How it works
+
+Currently Mollom for Expression engine will check all comments using the hook " ". If a comment is flagged as spam it will automatically be closed, if the system is unsure it will become a pending comment, if its not spam or penning the comment will be posted.
+
+This is complete automation.
+
+
+**Future**
+working on a second part to track then number of comments that have been tracked and how many post fall into each category of spam, ham or unsure.
