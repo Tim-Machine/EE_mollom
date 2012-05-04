@@ -8,7 +8,7 @@ You can create an account at http://www.mollom.com
 
 How it works
 
-Currently Mollom for Expression engine will check all comments using the hook " ". If a comment is flagged as spam it will automatically be closed, if the system is unsure it will become a pending comment, if its not spam or penning the comment will be posted.
+Currently Mollom for Expression engine will check all comments using the hook "insert_comment_insert_array". If a comment is flagged as spam it will automatically be closed, if the system is unsure it will become a pending comment, if its not spam or penning the comment will be posted.
 
 This is complete automation.
 
