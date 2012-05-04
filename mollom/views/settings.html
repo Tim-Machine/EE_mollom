@@ -1,0 +1,89 @@
+<div class="pageContents">
+	{% if flash_message %}
+	<div id="message_success">
+		{{ flash_message }}	
+	</div>
+	{% endif %}
+	<form action="{{ BASE }}&C=addons_extensions&M=save_extension_settings&file=dry_accessible_captcha" method="post">
+		{% if XID %}
+		<div>
+			<input type="hidden" name="XID" value="{{ XID }}" />
+		</div>
+		{% endif %}
+		<table class="mainTable padTable" border="0" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th style="width:50%;">
+						{{ lang.preference }}
+					</th>
+					<th>
+						{{ lang.setting }}
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="even">
+					<td>
+						<strong>{{ lang.switched_on }}
+					</td>
+					<td>
+						<input {% if switched_on == 'yes' %} checked="checked" {% endif %} type="radio" name="switched_on" value="yes" id="switched_on" label="yes">&nbsp;<label for="switched_on">{{ lang.yes }}</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input {% if switched_on == 'no' %} checked="checked" {% endif %} type="radio" name="switched_on" value="no" id="switched_off" label="no">&nbsp;<label for="switched_off">{{ lang.no }}</label>
+					</td>
+				</tr>
+				<tr class="even">
+					<td>
+						<strong>{{ lang.hints }}</strong>
+					</td>
+					<td>
+						<input {% if hints == 'yes' %} checked="checked" {% endif %} type="radio" name="hints" value="yes" id="hints_yes" label="yes">&nbsp;<label for="hints_yes">{{ lang.yes }}</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input {% if hints == 'no' %} checked="checked" {% endif %}type="radio" name="hints" value="no" id="hints_no" label="no">&nbsp;<label for="hints_no">{{ lang.no }}</label>
+					</td>
+				</tr>
+				<tr class="odd">
+					<td>
+						<strong>{{ lang.hints_wrap }}</strong>
+					</td>
+					<td>
+						<input {% if hints_wrap == 'yes' %} checked="checked" {% endif %} type="radio" name="hints_wrap" value="yes" id="hints_wrap_yes" label="yes">&nbsp;<label for="hints_wrap_yes">{{ lang.yes }}</label>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input {% if hints_wrap == 'no' %} checked="checked" {% endif %}type="radio" name="hints_wrap" value="no" id="hints_wrap_no" label="no">&nbsp;<label for="hints_wrap_no">{{ lang.no }}</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="mainTable padTable" border="0" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th style="width:50%;">
+						{{ lang.question }}
+					</th>
+					<th>
+						{{ lang.answer }}
+					</th>
+					<th class="remove_pair_column" style="width: 1ex;">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody class="settings_pair">
+			{% for pair in pairs %}
+				<tr class="{{ ['even', 'odd']|cycle(loop.index) }}">
+					<td>
+						<textarea name="questions[]" rows="1" cols="30">{{ pair.question|e }}</textarea>
+					</td>
+					<td>
+						<textarea name="answers[]" rows="1" cols="30">{{ pair.answer|e }}</textarea>
+					</td>
+					<td class="remove_pair_column">
+						<span class="remove_pair">&ndash;</span>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		<div id="controls"><input id="add_pair" class="submit" value="{{ lang.add_pair }}" /></div>
+		<input type="submit" name="submit" value="Submit" class="submit">
+	</form>
+	<div class="clear_right"></div>
+</div>
